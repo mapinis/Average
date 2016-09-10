@@ -11,5 +11,8 @@
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowCloseOnTouchOutside">true</item>
     </style>
+    <style name="AppTheme.mainAsBackground" >
+        <item name="android:colorBackground">@color/cCreatorBackground</item>
+    </style>
 
 </resources>

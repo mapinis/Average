@@ -1,88 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/courseCreator">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Course"
-        android:textSize="25dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="25dp"/>
-
-    <EditText
-        android:id="@+id/cName"
-        android:layout_width="match_parent"
-        android:layout_marginBottom="15dp"
-        android:layout_marginLeft="35dp"
-        android:layout_marginRight="35dp"
-        android:layout_height="wrap_content"
-        android:hint="Course Name"
-        android:textSize="18sp"/>
-
-    <EditText
-        android:id="@+id/cBlock"
-        android:layout_width="match_parent"
-        android:layout_marginBottom="15dp"
-        android:layout_marginLeft="35dp"
-        android:layout_marginRight="35dp"
-        android:layout_height="wrap_content"
-        android:hint="Block Number"
-        android:textSize="18sp"/>
-
-    <EditText
-        android:id="@+id/cTeacher"
-        android:layout_width="match_parent"
-        android:layout_marginBottom="15dp"
-        android:layout_marginLeft="35dp"
-        android:layout_marginRight="35dp"
-        android:layout_height="wrap_content"
-        android:hint="Teacher Name"
-        android:textSize="18sp"/>
-
-    <EditText
-        android:id="@+id/cRoom"
-        android:layout_width="match_parent"
-        android:layout_marginBottom="15dp"
-        android:layout_marginLeft="35dp"
-        android:layout_marginRight="35dp"
-        android:layout_height="wrap_content"
-        android:hint="Room Number"
-        android:textSize="18sp"/>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:weightSum="2"
-        android:orientation="horizontal"
-        android:layout_marginBottom="30dp"
-        android:layout_marginLeft="35dp"
-        android:layout_marginRight="35dp">
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#C7C6C4"
+        android:id="@+id/courseCreator">
 
-        <Button
-            android:id="@+id/addCourse"
-            android:background="#0000"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:textAllCaps="false"
-            android:text="Add Class"
-            android:layout_weight="1"
 
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Course"
+            android:textSize="25dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="25dp"/>
+
+        <EditText
+            android:id="@+id/cName"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"
+            android:layout_height="wrap_content"
+            android:hint="Course Name"
             android:textSize="18sp"/>
 
-        <Button
-            android:id="@+id/cancel"
-            android:background="#0000"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:textAllCaps="false"
-            android:text="Cancel"
+        <EditText
+            android:id="@+id/cBlock"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"
+            android:layout_height="wrap_content"
+            android:hint="Block Number"
             android:textSize="18sp"/>
+
+        <EditText
+            android:id="@+id/cTeacher"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"
+            android:layout_height="wrap_content"
+            android:hint="Teacher Name"
+            android:textSize="18sp"/>
+
+        <EditText
+            android:id="@+id/cRoom"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"
+            android:layout_height="wrap_content"
+            android:hint="Room Number"
+            android:textSize="18sp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:weightSum="2"
+            android:orientation="horizontal"
+            android:layout_marginBottom="30dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp">
+
+            <Button
+                android:id="@+id/addCourse"
+                android:background="#0000"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:textAllCaps="false"
+                android:text="Add"
+                android:layout_weight="1"
+
+                android:textSize="18sp"/>
+
+            <Button
+                android:id="@+id/cancel"
+                android:background="#0000"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:textAllCaps="false"
+                android:text="Cancel"
+                android:textSize="18sp"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 
-</LinearLayout>
+</ScrollView>
