@@ -8,7 +8,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -38,6 +46,47 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
+        courseList.clear();
+        String JSONData = "";
+        try {
+            InputStream input = openFileInput("courseData.txt");
+            if(input != null){
+                InputStreamReader inputRead = new InputStreamReader(input);
+                BufferedReader buffRead = new BufferedReader(inputRead);
+                String receivedString = "";
+                StringBuilder sBuilder = new StringBuilder();
+
+                while ((receivedString = buffRead.readLine()) != null) {
+                    sBuilder.append(receivedString);
+                }
+                input.close();
+                buffRead.close();
+                inputRead.close();
+                JSONData = sBuilder.toString();
+
+                JSONObject courseListData = new JSONObject(JSONData);
+                JSONArray courseListArray = courseListData.getJSONArray("courses");
+                for(int i = 0; i < courseListArray.length(); i++){
+                    JSONObject courseObj = courseListArray.getJSONObject(i);
+                    courseList.add(new course(courseObj.getString("name"),
+                            courseObj.getInt("block"), courseObj.getString("teacher"),
+                            courseObj.getString("room")));
+                }
+
+                TextView tempCourseTV = (TextView) findViewById(R.id.tempCourseTV);
+                String fin = "";
+                for(course course : courseList){
+                    fin += course.name;
+                }
+                tempCourseTV.setText(fin);
+            }
+
+        } catch(FileNotFoundException e) {
+        } catch (Exception e){
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+
         dimmer.getForeground().setAlpha(0);
         super.onResume();
     }

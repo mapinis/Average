@@ -12,11 +12,15 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.xmlpull.v1.XmlSerializer;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.StringWriter;
 import java.util.ArrayList;
 
@@ -49,36 +53,34 @@ public class courseCreator extends Activity{
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                StringWriter writer = new StringWriter();
-                try {
-                    deleteFile(fileName);
-                    courseList.add(new course(etName.getText().toString(),
-                            Integer.parseInt(etBlock.getText().toString()),
-                            etTeacher.getText().toString(), etRoom.getText().toString()));
+                deleteFile(fileName);
+                Log.i("dir", getFilesDir().toString());
+                courseList.add(new course(etName.getText().toString(),
+                        Integer.parseInt(etBlock.getText().toString()),
+                        etTeacher.getText().toString(), etRoom.getText().toString()));
 
-                    Log.i("dir", getFilesDir().toString());
-                    FileOutputStream fos = openFileOutput(fileName, MODE_APPEND);
-                    XmlSerializer serializer = Xml.newSerializer();
-                    serializer.setOutput(writer);
-                    serializer.startDocument(null, Boolean.valueOf(true));
-                    serializer.startTag(null, "courseList");
+                try{
+                    OutputStreamWriter osw = new OutputStreamWriter(openFileOutput(fileName, MODE_PRIVATE));
 
-                    for(course course: courseList){
-                        serializer.startTag(null, "course");
-                        serializer.attribute(null, "name", course.getName());
-                        serializer.attribute(null, "room", course.getRoom());
-                        serializer.attribute(null, "teacher", course.getTeacher());
-                        serializer.attribute(null, "block", Integer.toString(course.getBlock()));
-                        serializer.endTag(null, "course");
+                    JSONObject courseListObj = new JSONObject();
+                    JSONArray courseArray = new JSONArray();
+                    for (course course : courseList){
+                        JSONObject courseObj = new JSONObject();
+                        courseObj.put("name", course.name);
+                        courseObj.put("block", course.block);
+                        courseObj.put("teacher", course.teacher);
+                        courseObj.put("room", course.room);
+                        courseArray.put(courseObj);
                     }
-                    serializer.endTag(null, "courseList");
-                    serializer.endDocument();
-                    serializer.flush();
-                    fos.write(writer.toString().getBytes());
-                    fos.close();
-                    Log.i("dir", getFilesDir().toString());
+                    courseListObj.put("courses", courseArray);
+
+                    osw.write(courseListObj.toString());
+                    osw.close();
+
+                    Log.i("JSONData", courseListObj.toString());
                     onBackPressed();
-                } catch (Exception e){
+                } catch(Exception e){
+                    e.printStackTrace();
                     throw new RuntimeException(e);
                 }
             }
