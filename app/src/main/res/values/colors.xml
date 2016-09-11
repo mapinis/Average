@@ -9,4 +9,5 @@
     <color name="mainTextCol">#D8000000</color>
     <color name="cCreatorTextCol">#87000000</color>
     <color name="cCreatorBackground">#C7C6C4</color>
+    <color name="borderColor">#5E5E5E</color>
 </resources>

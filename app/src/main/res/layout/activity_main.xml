@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    android:id="@+id/dimmer"
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,35 +8,39 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:foreground="@color/mainForeground"
     tools:context="com.nodomain.mark.mka_class_tool.MainActivity">
 
-    <LinearLayout
-        android:id="@+id/linear"
+    <FrameLayout
+        android:id="@+id/dimmer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:foreground="@color/mainForeground">
 
-        <TextView
-            android:id="@+id/tempCourseTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="NO COURSES"
-            android:layout_gravity="center_horizontal"
-            android:textSize="17sp"/>
+        <LinearLayout
+            android:id="@+id/linear"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/addCourseButton"
-            android:textAllCaps="false"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:paddingTop="20dp"
-            android:text="+Add Course"
-            android:textSize="20sp"
-            android:alpha="0.6"
-            android:background="@color/buttBack"
-            android:textColor="@color/lightTextCol"/>
+            <LinearLayout
+                android:id="@+id/courseViewLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
 
-    </LinearLayout>
-</FrameLayout>
+            <Button
+                android:id="@+id/addCourseButton"
+                android:textAllCaps="false"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:paddingTop="20dp"
+                android:text="+Add Course"
+                android:textSize="20sp"
+                android:alpha="0.6"
+                android:background="@color/buttBack"
+                android:textColor="@color/lightTextCol"/>
+
+        </LinearLayout>
+    </FrameLayout>
+</ScrollView>
