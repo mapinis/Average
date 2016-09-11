@@ -1,15 +1,18 @@
 package com.nodomain.mark.mka_class_tool;
 
+import java.io.Serializable;
+
 /**
  * Created by Mark on 9/9/2016.
  */
-public class course {
+public class course implements Serializable{
     String name;
     int block;
     String teacher;
-    int room;
+    String room;
 
-    public course(String name, int block, String teacher, int room){
+
+    public course(String name, int block, String teacher, String room){
         this.name = name;
         this.block = block;
         this.teacher = teacher;
@@ -40,11 +43,11 @@ public class course {
         this.teacher = teacher;
     }
 
-    public int getRoom() {
+    public String getRoom() {
         return room;
     }
 
-    public void setRoom(int room) {
+    public void setRoom(String room) {
         this.room = room;
     }
 }
