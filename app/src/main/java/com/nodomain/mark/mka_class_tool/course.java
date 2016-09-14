@@ -1,11 +1,9 @@
 package com.nodomain.mark.mka_class_tool;
 
-import java.io.Serializable;
-
 /**
  * Created by Mark on 9/9/2016.
  */
-public class course implements Serializable{
+public class course {
     public String name;
     public int block;
     public String teacher;

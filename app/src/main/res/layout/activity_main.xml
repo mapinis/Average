@@ -16,31 +16,18 @@
         android:layout_height="match_parent"
         android:foreground="@color/mainForeground">
 
-        <LinearLayout
-            android:id="@+id/linear"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+        <Button
+            android:id="@+id/addCourseButton"
+            android:textAllCaps="false"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:paddingTop="20dp"
+            android:text="+Add Course"
+            android:textSize="20sp"
+            android:alpha="0.6"
+            android:background="@color/buttBack"
+            android:textColor="@color/lightTextCol"/>
 
-            <LinearLayout
-                android:id="@+id/courseViewLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" />
-
-            <Button
-                android:id="@+id/addCourseButton"
-                android:textAllCaps="false"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:paddingTop="20dp"
-                android:text="+Add Course"
-                android:textSize="20sp"
-                android:alpha="0.6"
-                android:background="@color/buttBack"
-                android:textColor="@color/lightTextCol"/>
-
-        </LinearLayout>
     </FrameLayout>
 </ScrollView>

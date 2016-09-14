@@ -1,11 +1,9 @@
 package com.nodomain.mark.mka_class_tool;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.util.Xml;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -13,22 +11,18 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
-import org.xmlpull.v1.XmlSerializer;
 
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.io.StringWriter;
-import java.util.ArrayList;
 
 /**
  * Created by Mark on 9/9/2016.
  */
 public class courseCreator extends Activity{
-    final String fileName = "courseData.txt";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +30,6 @@ public class courseCreator extends Activity{
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         this.setContentView(R.layout.course_creator);
-
-        final ArrayList<course> courseList = (ArrayList<course>)getIntent().getSerializableExtra("courseList");
 
         final EditText etName = (EditText) findViewById(R.id.cName);
         final EditText etRoom = (EditText) findViewById(R.id.cRoom);
@@ -53,33 +45,44 @@ public class courseCreator extends Activity{
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                deleteFile(fileName);
-                Log.i("dir", getFilesDir().toString());
-                courseList.add(new course(etName.getText().toString(),
-                        Integer.parseInt(etBlock.getText().toString()),
-                        etTeacher.getText().toString(), etRoom.getText().toString()));
+                String JSONData = "";
+                try {
+                    InputStream input = openFileInput("courseData.txt");
+                    InputStreamReader inputRead  = new InputStreamReader(input);
+                    BufferedReader buffRead = new BufferedReader(inputRead);
 
-                try{
-                    OutputStreamWriter osw = new OutputStreamWriter(openFileOutput(fileName, MODE_PRIVATE));
+                    if(input != null){
+                        String receivedString = "";
+                        StringBuilder sBuilder = new StringBuilder();
 
-                    JSONObject courseListObj = new JSONObject();
-                    JSONArray courseArray = new JSONArray();
-                    for (course course : courseList){
+                        while ((receivedString = buffRead.readLine()) != null) {
+                            sBuilder.append(receivedString);
+                        }
+                        input.close();
+                        buffRead.close();
+                        inputRead.close();
+                        JSONData = sBuilder.toString();
+
+                        JSONObject courseListData = new JSONObject(JSONData);
+                        JSONArray courseListArray = courseListData.getJSONArray("courses");
                         JSONObject courseObj = new JSONObject();
-                        courseObj.put("name", course.name);
-                        courseObj.put("block", course.block);
-                        courseObj.put("teacher", course.teacher);
-                        courseObj.put("room", course.room);
-                        courseArray.put(courseObj);
+                        courseObj.put("name", etName.getText());
+                        courseObj.put("block", etBlock.getText());
+                        courseObj.put("teacher", etTeacher.getText());
+                        courseObj.put("room", etRoom.getText());
+                        courseListArray.put(courseObj);
+                        courseListData.remove("courses");
+                        courseListData.put("courses", courseListArray);
+
+                        OutputStreamWriter osw = new OutputStreamWriter(openFileOutput("courseData.txt", MODE_PRIVATE));
+                        osw.write(courseListData.toString());
+                        osw.close();
+
+                        Log.i("JSONData", courseListData.toString());
                     }
-                    courseListObj.put("courses", courseArray);
 
-                    osw.write(courseListObj.toString());
-                    osw.close();
-
-                    Log.i("JSONData", courseListObj.toString());
-                    onBackPressed();
-                } catch(Exception e){
+                } catch(FileNotFoundException e) {
+                } catch (Exception e){
                     e.printStackTrace();
                     throw new RuntimeException(e);
                 }
