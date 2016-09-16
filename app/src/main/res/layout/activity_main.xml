@@ -1,33 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:clipChildren="false"
+    android:clipToPadding="false"
     tools:context="com.nodomain.mark.mka_class_tool.MainActivity">
 
-    <FrameLayout
-        android:id="@+id/dimmer"
-        android:layout_width="match_parent"
+    <android.support.v7.widget.CardView
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:foreground="@color/mainForeground">
+        android:id="@+id/courseListCV">
 
-        <Button
-            android:id="@+id/addCourseButton"
-            android:textAllCaps="false"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:id="@+id/courseListElement"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:paddingTop="20dp"
-            android:text="+Add Course"
-            android:textSize="20sp"
-            android:alpha="0.6"
-            android:background="@color/buttBack"
-            android:textColor="@color/lightTextCol"/>
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:paddingRight="5dp"
+            android:paddingLeft="5dp"
+            android:weightSum="2">
 
-    </FrameLayout>
-</ScrollView>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingTop="7dp"
+                android:paddingBottom="7dp"
+                android:paddingLeft="7dp"
+                android:layout_weight="1.7">
+
+                <TextView
+                    android:id="@+id/nameDisp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:textColor="@color/mainTextCol"
+                    android:text="Default Name"
+                    android:textSize="25sp" />
+
+                <TextView
+                    android:id="@+id/roomDisp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:textColor="@color/lightTextCol"
+                    android:text="Room Default"
+                    android:textSize="20sp"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/gradeDisp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.3"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:text="A+"
+                android:textColor="@color/mainTextCol"
+                android:textSize="30sp" />
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/addCourseFAB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_add_white_24dp"
+        app:borderWidth="0dp"
+        android:elevation="6dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        app:pressedTranslationZ="12dp"
+        app:fabSize="auto"
+        app:rippleColor="@color/colorPrimaryDark"/> <!-- CHANGE THIS TO SOMETHING BETTER -->
+
+</RelativeLayout>

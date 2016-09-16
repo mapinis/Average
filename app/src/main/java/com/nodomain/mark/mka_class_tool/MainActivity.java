@@ -2,6 +2,7 @@ package com.nodomain.mark.mka_class_tool;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -20,7 +21,6 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     ArrayList<course> courseList;
-    FrameLayout dimmer;
     ArrayList<LinearLayout> courseListElements;
     InputStream input;
     InputStreamReader inputRead;
@@ -30,9 +30,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button addCourse = (Button) findViewById(R.id.addCourseButton);
-        dimmer = (FrameLayout) findViewById(R.id.dimmer);
-        dimmer.getForeground().setAlpha(0);
+        FloatingActionButton addCourse = (FloatingActionButton) findViewById(R.id.addCourseFAB);
         courseList = new ArrayList<>();
         courseListElements = new ArrayList<>();
 
@@ -117,13 +115,11 @@ public class MainActivity extends AppCompatActivity {
             throw new RuntimeException(e);
         }
 
-        dimmer.getForeground().setAlpha(0);
         super.onResume();
     }
 
     @Override
     protected void onPause() {
-        dimmer.getForeground().setAlpha(220);
         super.onPause();
     }
 }
