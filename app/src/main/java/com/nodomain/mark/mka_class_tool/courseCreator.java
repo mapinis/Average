@@ -45,61 +45,28 @@ public class courseCreator extends Activity{
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                String JSONData = null;
+                //MAKE SURE TO TEST THAT BLOCK is INT, and NAME not TAKEN
                 try {
-                    InputStream input = openFileInput("courseData.txt");
-                    InputStreamReader inputRead  = new InputStreamReader(input);
-                    BufferedReader buffRead = new BufferedReader(inputRead);
 
-                    if(input != null) {
-                        String receivedString = "";
-                        StringBuilder sBuilder = new StringBuilder();
-
-                        while ((receivedString = buffRead.readLine()) != null) {
-                            sBuilder.append(receivedString);
-                        }
-                        input.close();
-                        buffRead.close();
-                        inputRead.close();
-                        JSONData = sBuilder.toString();
-                    }
-
-                } catch(FileNotFoundException e) {
-                    Log.i("courseData.txt", "not found");
-                } catch (Exception e){
-                    e.printStackTrace();
-                    throw new RuntimeException(e);
-                }
-
-                JSONObject courseListData = new JSONObject();
-                JSONArray courseListArray = new JSONArray();
-                try {
-                    if(JSONData != null){
-                        courseListData = new JSONObject(JSONData);
-                        courseListArray = courseListData.getJSONArray("courses");
-                    }
-
-                    JSONObject courseObj = new JSONObject();
-                    courseObj.put("name", etName.getText());
-                    courseObj.put("block", etBlock.getText());
-                    courseObj.put("teacher", etTeacher.getText());
-                    courseObj.put("room", etRoom.getText());
-                    courseListArray.put(courseObj);
-                    courseListData.remove("courses");
-                    courseListData.put("courses", courseListArray);
-
+                    JSONIO JSONIO = new JSONIO(openFileInput("courseData.txt"));
+                    JSONIO.addCourse(etName.getText().toString(), Integer.parseInt(etBlock.getText().toString()),
+                            etTeacher.getText().toString(), etRoom.getText().toString());
                     deleteFile("courseData.txt");
-                    OutputStreamWriter osw = new OutputStreamWriter(openFileOutput("courseData.txt", MODE_APPEND));
-                    osw.write(courseListData.toString());
-                    osw.close();
+                    JSONIO.writeJSON(new OutputStreamWriter(openFileOutput("courseData.txt", MODE_APPEND)));
 
                 } catch(FileNotFoundException e){
                     Log.i("courseData.txt", "not found");
+                    try{
+                        JSONIO JSONIO = new JSONIO(null);
+                        JSONIO.addCourse(etName.getText().toString(), Integer.parseInt(etBlock.getText().toString()),
+                                etTeacher.getText().toString(), etRoom.getText().toString());
+                        deleteFile("courseData.txt");
+                        JSONIO.writeJSON(new OutputStreamWriter(openFileOutput("courseData.txt", MODE_APPEND)));
+                    } catch(FileNotFoundException f){}
                 } catch(Exception e){
                     e.printStackTrace();
                     throw new RuntimeException(e);
                 }
-                Log.i("JSONData", courseListData.toString());
 
                 onBackPressed();
             }

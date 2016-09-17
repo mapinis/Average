@@ -14,23 +14,17 @@ import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     ArrayList<course> courseList;
-    InputStream input;
-    InputStreamReader inputRead;
-    BufferedReader buffRead;
     ListView courseListView;
     CourseListAdapter cvAdapter;
+    JSONIO JSONIO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,15 +73,22 @@ public class MainActivity extends AppCompatActivity {
                                 .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                        JSONIO.deleteCourse(courseList.get(position));
+                                        deleteFile("courseData.txt");
+                                        try {
+                                            JSONIO.writeJSON(new OutputStreamWriter(openFileOutput("courseData.txt", MODE_APPEND)));
+                                        } catch (Exception e){
+                                            e.printStackTrace();
+                                            throw new RuntimeException(e);
+                                        }
                                         courseList.remove(position);
                                         cvAdapter.notifyDataSetChanged();
-                                        dialog.dismiss();
                                     }
                                 })
                                 .setNegativeButton("Cancel", null)
                                 .show();
 
-                        //DELETE course here
                     }
                 });
                 parentLayout.addView(deleteCourse);
@@ -106,53 +107,21 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-
-        courseList.clear();
-
-        try {
-            input = openFileInput("courseData.txt");
-            inputRead = new InputStreamReader(input);
-            buffRead = new BufferedReader(inputRead);
-        } catch (FileNotFoundException e){
+        try{
+            JSONIO = new JSONIO(openFileInput("courseData.txt"));
+        } catch(FileNotFoundException e){
             Log.i("courseData.txt", "not found");
+            JSONIO = new JSONIO(null);
+
         } catch (Exception e){
             e.printStackTrace();
             throw new RuntimeException(e);
         }
+        courseList = JSONIO.getCourseList();
 
-        String JSONData = "";
-        try {
-            if (input != null) {
-                String receivedString = "";
-                StringBuilder sBuilder = new StringBuilder();
-
-                while ((receivedString = buffRead.readLine()) != null) {
-                    sBuilder.append(receivedString);
-                }
-                input.close();
-                buffRead.close();
-                inputRead.close();
-                JSONData = sBuilder.toString();
-
-                JSONObject courseListData = new JSONObject(JSONData);
-                JSONArray courseListArray = courseListData.getJSONArray("courses");
-                for (int i = 0; i < courseListArray.length(); i++) {
-                    JSONObject courseObj = courseListArray.getJSONObject(i);
-                    Log.i("addingCourse", courseObj.toString());
-                    courseList.add(new course(courseObj.getString("name"),
-                            courseObj.getInt("block"), courseObj.getString("teacher"),
-                            courseObj.getString("room")));
-                }
-            }
-        } catch (Exception e){
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
-
-
+        cvAdapter = new CourseListAdapter(this, R.layout.course_cv, courseList);
         courseListView.setAdapter(cvAdapter);
-        Log.i("adapterSet", "adapterSet");
-
+        cvAdapter.notifyDataSetChanged();
         super.onResume();
     }
 
