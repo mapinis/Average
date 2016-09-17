@@ -14,12 +14,14 @@ public class course {
 
         public int pointsWorth;
         public int pointsGotten;
+        public String name;
         public float percentage;
 
-        public assignment(int pointsWorth, int pointsGotten){
+        public assignment(String name, int pointsWorth, int pointsGotten){
             this.pointsWorth = pointsWorth;
             this.pointsGotten = pointsGotten;
             this.percentage = pointsGotten/pointsWorth;
+            this.name = name;
         }
     }
 
@@ -40,8 +42,8 @@ public class course {
         average = -1;
     }
 
-    public void addAssignment(int pointsWorth, int pointsGotten) {
-        assignments.add(new assignment(pointsWorth, pointsGotten));
+    public void addAssignment(String name, int pointsWorth, int pointsGotten) {
+        assignments.add(new assignment(name, pointsWorth, pointsGotten));
         int totalPointsGotten = 0;
         int totalPointsWorth = 0;
         for(assignment assignment : assignments) {

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:weightSum="2"
+    android:background="#4000"
+    android:animateLayoutChanges="true">
+
+    <ImageButton
+        android:id="@+id/deleteCourse"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:src="@mipmap/ic_delete_white_24dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginBottom="13dp"
+        android:scaleType="center"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        android:background="#0000"/>
+
+    <ImageButton
+        android:id="@+id/cancelDeletion"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:src="@mipmap/ic_cancel_white_24dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginBottom="13dp"
+        android:scaleType="center"
+        android:scaleX="1.5"
+        android:scaleY="1.5"
+        android:background="#0000"/>
+</LinearLayout>

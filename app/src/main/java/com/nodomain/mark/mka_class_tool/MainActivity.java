@@ -1,14 +1,17 @@
 package com.nodomain.mark.mka_class_tool;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import org.json.JSONArray;
@@ -27,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     InputStreamReader inputRead;
     BufferedReader buffRead;
     ListView courseListView;
+    CourseListAdapter cvAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         FloatingActionButton addCourse = (FloatingActionButton) findViewById(R.id.addCourseFAB);
         courseList = new ArrayList<>();
+        cvAdapter = new CourseListAdapter(this, R.layout.course_cv, courseList);
 
         courseListView = (ListView) findViewById(R.id.courseListView);
         courseListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -44,17 +49,48 @@ public class MainActivity extends AppCompatActivity {
                 edit TextViews and other stuff
                 edit backButton in top left
                 setContentView
-                OR: USE FRAGMENTS (seems like the cool way to do it)*/
+                OR: USE FRAGMENTS (seems like the cool way to do it)
+                OR: Just make an activity and pass it the information*/
                 Log.i("click", "click");
             }
         });
 
         courseListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                //THIS IS ALL DEBUG STUFF, DELETE LATER
-                deleteFile("courseData.txt");
-                onResume();
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+                final LinearLayout parentLayout = (LinearLayout) view.findViewById(R.id.parentLayout);
+                LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                final LinearLayout deleteCourse = (LinearLayout) inflater.inflate(R.layout.delete_course, null, false);
+
+                deleteCourse.findViewById(R.id.cancelDeletion).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        parentLayout.removeView(deleteCourse);
+                    }
+                });
+                deleteCourse.findViewById(R.id.deleteCourse).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        parentLayout.removeView(deleteCourse);
+                        new AlertDialog.Builder(MainActivity.this)
+                                .setIcon(R.mipmap.ic_delete_black_24dp)
+                                .setTitle("Delete Course")
+                                .setMessage("Are you sure you want to delete course '" + courseList.get(position).name + "' permanently? \n \nYou will lose all assignments and data.")
+                                .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        courseList.remove(position);
+                                        cvAdapter.notifyDataSetChanged();
+                                        dialog.dismiss();
+                                    }
+                                })
+                                .setNegativeButton("Cancel", null)
+                                .show();
+
+                        //DELETE course here
+                    }
+                });
+                parentLayout.addView(deleteCourse);
                 return false;
             }
         });
@@ -113,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
             throw new RuntimeException(e);
         }
 
-        CourseListAdapter cvAdapter = new CourseListAdapter(this, R.layout.course_cv, courseList);
+
         courseListView.setAdapter(cvAdapter);
         Log.i("adapterSet", "adapterSet");
 
