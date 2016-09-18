@@ -15,7 +15,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import java.io.FileNotFoundException;
-import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
@@ -69,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                         new AlertDialog.Builder(MainActivity.this)
                                 .setIcon(R.mipmap.ic_delete_black_24dp)
                                 .setTitle("Delete Course")
-                                .setMessage("Are you sure you want to delete course '" + courseList.get(position).name + "' permanently? \n \nYou will lose all assignments and data.")
+                                .setMessage("Are you sure you want to delete course '" + courseList.get(position).name + "' permanently? \n \nAll assessments and data will be lost.")
                                 .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {

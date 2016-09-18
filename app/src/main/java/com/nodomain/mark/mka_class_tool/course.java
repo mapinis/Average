@@ -10,14 +10,14 @@ import java.util.ArrayList;
 
 public class course {
 
-    private class assignment {
+    private class assessment {
 
         public int pointsWorth;
         public int pointsGotten;
         public String name;
         public float percentage;
 
-        public assignment(String name, int pointsWorth, int pointsGotten){
+        public assessment(String name, int pointsWorth, int pointsGotten){
             this.pointsWorth = pointsWorth;
             this.pointsGotten = pointsGotten;
             this.percentage = pointsGotten/pointsWorth;
@@ -30,7 +30,7 @@ public class course {
     public String teacher;
     public String room;
     public float average;
-    public ArrayList<assignment> assignments;
+    public ArrayList<assessment> assessments;
 
 
     public course(String name, int block, String teacher, String room){
@@ -38,17 +38,17 @@ public class course {
         this.block = block;
         this.teacher = teacher;
         this.room = room;
-        assignments = new ArrayList<>();
+        assessments = new ArrayList<>();
         average = -1;
     }
 
-    public void addAssignment(String name, int pointsWorth, int pointsGotten) {
-        assignments.add(new assignment(name, pointsWorth, pointsGotten));
+    public void addAssessment(String name, int pointsWorth, int pointsGotten) {
+        assessments.add(new assessment(name, pointsWorth, pointsGotten));
         int totalPointsGotten = 0;
         int totalPointsWorth = 0;
-        for(assignment assignment : assignments) {
-            totalPointsGotten += assignment.pointsGotten;
-            totalPointsWorth += assignment.pointsWorth;
+        for(assessment assessment : assessments) {
+            totalPointsGotten += assessment.pointsGotten;
+            totalPointsWorth += assessment.pointsWorth;
         }
 
         average = totalPointsGotten / totalPointsWorth;

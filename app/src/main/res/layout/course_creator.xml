@@ -1,104 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.nodomain.mark.mka_class_tool.courseCreator"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <LinearLayout
-        android:orientation="vertical" android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <ScrollView
+        android:id="@+id/bottomView"
+        android:layout_width="match_parent"
         android:background="@color/cCreatorBackground"
-        android:id="@+id/courseCreator">
-
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="New Course"
-            android:textSize="25dp"
-            android:textColor="@color/cCreatorTextCol"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="25dp"/>
-
-        <EditText
-            android:id="@+id/cName"
-            android:layout_width="match_parent"
-            android:textColor="@color/cCreatorTextCol"
-            android:layout_marginBottom="15dp"
-            android:layout_marginLeft="35dp"
-            android:layout_marginRight="35dp"
-            android:layout_height="wrap_content"
-            android:hint="Course Name"
-            android:textSize="18sp"/>
-
-        <EditText
-            android:id="@+id/cBlock"
-            android:layout_width="match_parent"
-            android:textColor="@color/cCreatorTextCol"
-            android:layout_marginBottom="15dp"
-            android:layout_marginLeft="35dp"
-            android:layout_marginRight="35dp"
-            android:layout_height="wrap_content"
-            android:hint="Block Number"
-            android:textSize="18sp"/>
-
-        <EditText
-            android:id="@+id/cTeacher"
-            android:layout_width="match_parent"
-            android:textColor="@color/cCreatorTextCol"
-            android:layout_marginBottom="15dp"
-            android:layout_marginLeft="35dp"
-            android:layout_marginRight="35dp"
-            android:layout_height="wrap_content"
-            android:hint="Teacher Name"
-            android:textSize="18sp"/>
-
-        <EditText
-            android:id="@+id/cRoom"
-            android:layout_width="match_parent"
-            android:textColor="@color/cCreatorTextCol"
-            android:layout_marginBottom="15dp"
-            android:layout_marginLeft="35dp"
-            android:layout_marginRight="35dp"
-            android:layout_height="wrap_content"
-            android:hint="Room Number"
-            android:textSize="18sp"/>
+        android:layout_height="wrap_content">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:weightSum="2"
-            android:orientation="horizontal"
-            android:layout_marginBottom="30dp"
-            android:layout_marginLeft="35dp"
-            android:layout_marginRight="35dp">
+            android:orientation="vertical" android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/courseCreator">
 
-            <Button
-                android:id="@+id/addCourse"
-                android:background="@color/buttBack"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:textAllCaps="false"
-                android:textColor="@color/mainTextCol"
-                android:text="Add"
-                android:layout_weight="1"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Course"
+                android:textSize="25dp"
+                android:textColor="@color/cCreatorTextCol"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="25dp"/>
+
+            <EditText
+                android:id="@+id/cName"
+                android:layout_width="match_parent"
+                android:textColor="@color/cCreatorTextCol"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="35dp"
+                android:layout_marginRight="35dp"
+                android:layout_height="wrap_content"
+                android:hint="Course Name"
                 android:textSize="18sp"/>
 
-            <Button
-                android:id="@+id/cancel"
-                android:background="@color/buttBack"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:textAllCaps="false"
-                android:textColor="@color/mainTextCol"
-                android:text="Cancel"
+            <EditText
+                android:id="@+id/cBlock"
+                android:layout_width="match_parent"
+                android:textColor="@color/cCreatorTextCol"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="35dp"
+                android:layout_marginRight="35dp"
+                android:layout_height="wrap_content"
+                android:hint="Block Number"
+                android:textSize="18sp"/>
+
+            <EditText
+                android:id="@+id/cTeacher"
+                android:layout_width="match_parent"
+                android:textColor="@color/cCreatorTextCol"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="35dp"
+                android:layout_marginRight="35dp"
+                android:layout_height="wrap_content"
+                android:hint="Teacher Name"
+                android:textSize="18sp"/>
+
+            <EditText
+                android:id="@+id/cRoom"
+                android:layout_width="match_parent"
+                android:textColor="@color/cCreatorTextCol"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="35dp"
+                android:layout_marginRight="35dp"
+                android:layout_height="wrap_content"
+                android:hint="Room Number"
                 android:textSize="18sp"/>
 
         </LinearLayout>
+    </ScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="1">
 
+        <Button
+            android:id="@+id/cancel"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="0.5"
+            android:text="cancel"/>
+
+        <Button
+            android:id="@+id/addCourse"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="0.5"
+            android:text="save"/>
     </LinearLayout>
-
-</ScrollView>
+</LinearLayout>

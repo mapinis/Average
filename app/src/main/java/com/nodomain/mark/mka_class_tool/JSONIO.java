@@ -138,11 +138,11 @@ public class JSONIO {
         }
     }
 
-    public void addAssignment(course course){
+    public void addAssessment(course course){
         //NOT DOING THIS YET
     }
 
-    public void deleteAssignment(course course, String assignmentName){
+    public void deleteAssessment(course course, String assessmentName){
         readJSON();
         //NOT DOING THIS YET
     }
