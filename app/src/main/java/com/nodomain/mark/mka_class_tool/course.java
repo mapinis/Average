@@ -1,5 +1,6 @@
 package com.nodomain.mark.mka_class_tool;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -8,7 +9,7 @@ import java.util.ArrayList;
 
 
 
-public class course {
+public class course implements Serializable{
 
     private class assessment {
 
@@ -51,6 +52,18 @@ public class course {
             totalPointsWorth += assessment.pointsWorth;
         }
 
-        average = totalPointsGotten / totalPointsWorth;
+        average = (totalPointsGotten / totalPointsWorth) * 100;
+    }
+
+    public void deleteAssessment(assessment assessment) {
+        assessments.remove(assessment);
+        int totalPointsGotten = 0;
+        int totalPointsWorth = 0;
+        for(assessment ass : assessments) { //hehe
+            totalPointsGotten += ass.pointsGotten;
+            totalPointsWorth += ass.pointsWorth;
+        }
+
+        average = (totalPointsGotten / totalPointsWorth) * 100;
     }
 }

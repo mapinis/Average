@@ -13,22 +13,118 @@
         android:id="@+id/infoLayout"
         android:layout_width="match_parent"
         android:orientation="vertical"
+        android:elevation="10dp"
         android:layout_height="0dp"
-        android:layout_weight="0.4" >
+        android:background="@color/colorPrimaryLight"
+        android:paddingTop="10dp"
+        android:layout_weight="0.45" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:orientation="vertical"
+            android:textColor="#FFF"
+            android:elevation="15dp"
+            android:background="@color/colorPrimaryDark"
+            android:paddingBottom="7dp">
+
+            <TextView
+                android:id="@+id/average"
+                android:textSize="60sp"
+                android:textAlignment="center"
+                android:gravity="center_horizontal"
+                android:textColor="#FFF"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="50%"/>
+
+            <TextView
+                android:id="@+id/averageText"
+                android:textSize="20sp"
+                android:textAlignment="center"
+                android:gravity="center_horizontal"
+                android:textColor="#FFF"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Average"/>
+
+        </LinearLayout>
 
         <TextView
+            android:id="@+id/name"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Course Info"/>
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textAlignment="center"
+            android:textColor="@color/mainTextCol"
+            android:layout_marginTop="5dp"
+            android:textSize="30sp"
+            android:text="Course Name"/>
+
+        <TextView
+            android:id="@+id/teacher"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textAlignment="center"
+            android:textColor="@color/lightTextCol"
+            android:layout_marginTop="10dp"
+            android:textSize="20sp"
+            android:text="Teacher: Name"/>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:weightSum="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/block"
+                android:layout_width="0dp"
+                android:layout_weight="0.5"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textAlignment="center"
+                android:textColor="@color/lightTextCol"
+                android:textSize="20sp"
+                android:text="Block #"/>
+
+            <TextView
+                android:id="@+id/room"
+                android:layout_width="0dp"
+                android:layout_weight="0.5"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textAlignment="center"
+                android:textColor="@color/lightTextCol"
+                android:textSize="20sp"
+                android:text="Room #"/>
+
+        </LinearLayout>
 
     </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:text="Assessments"
+        android:textColor="@color/lightTextCol"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:elevation="5dp"
+        android:layout_weight="0.075"/>
 
     <RelativeLayout
         android:id="@+id/assessmentsLayout"
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_height="0dp"
-        android:layout_weight="0.6" >
+        android:layout_weight="0.475" >
 
         <ListView
             android:layout_width="match_parent"
@@ -37,7 +133,7 @@
             android:dividerHeight="7dp"
             android:id="@+id/assessmentsListView" />
 
-        <android.support.design.widget.FloatingActionButton
+        <!--<android.support.design.widget.FloatingActionButton
             android:id="@+id/addAssessmentFAB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -48,7 +144,7 @@
             android:layout_alignParentEnd="true"
             app:pressedTranslationZ="12dp"
             app:fabSize="mini"
-            app:rippleColor="@color/colorPrimaryDark"/> <!-- CHANGE THIS TO SOMETHING BETTER -->
+            app:rippleColor="@color/colorPrimaryDark"/> <!- CHANGE THIS TO SOMETHING BETTER -->
 
     </RelativeLayout>
 

@@ -44,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
                 setContentView
                 OR: USE FRAGMENTS (seems like the cool way to do it)
                 OR: Just make an activity and pass it the information*/
+                Intent intent = new Intent(MainActivity.this, CourseActivity.class);
+                intent.putExtra("course", courseList.get(position));
+                startActivity(intent);
                 Log.i("click", "click");
             }
         });
