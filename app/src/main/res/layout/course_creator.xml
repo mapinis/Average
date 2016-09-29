@@ -3,7 +3,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.nodomain.mark.mka_class_tool.courseCreator"
+    tools:context="com.nodomain.mark.class_tool.courseCreator"
     xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <ScrollView

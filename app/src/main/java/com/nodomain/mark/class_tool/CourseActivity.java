@@ -1,7 +1,6 @@
-package com.nodomain.mark.mka_class_tool;
+package com.nodomain.mark.class_tool;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 

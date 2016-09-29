@@ -1,6 +1,5 @@
-package com.nodomain.mark.mka_class_tool;
+package com.nodomain.mark.class_tool;
 
-import android.support.annotation.Nullable;
 import android.util.Log;
 
 import org.json.JSONArray;

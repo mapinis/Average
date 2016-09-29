@@ -1,8 +1,7 @@
-package com.nodomain.mark.mka_class_tool;
+package com.nodomain.mark.class_tool;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;

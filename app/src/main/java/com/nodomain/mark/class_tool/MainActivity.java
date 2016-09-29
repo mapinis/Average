@@ -1,4 +1,4 @@
-package com.nodomain.mark.mka_class_tool;
+package com.nodomain.mark.class_tool;
 
 import android.app.AlertDialog;
 import android.content.Context;
