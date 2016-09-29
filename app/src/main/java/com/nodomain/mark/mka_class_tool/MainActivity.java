@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, CourseActivity.class);
                 intent.putExtra("course", courseList.get(position));
                 startActivity(intent);
-                MainActivity.this.overridePendingTransition(R.anim.right_to_left, R.anim.left_to_right);
                 Log.i("click", "click");
             }
         });
@@ -81,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
                                         deleteFile("courseData.txt");
                                         try {
                                             JSONIO.writeJSON(new OutputStreamWriter(openFileOutput("courseData.txt", MODE_APPEND)));
-                                        } catch (Exception e) {
+                                        } catch (Exception e){
                                             e.printStackTrace();
                                             throw new RuntimeException(e);
                                         }
@@ -110,13 +109,13 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        try {
+        try{
             JSONIO = new JSONIO(openFileInput("courseData.txt"));
-        } catch (FileNotFoundException e) {
+        } catch(FileNotFoundException e){
             Log.i("courseData.txt", "not found");
             JSONIO = new JSONIO(null);
 
-        } catch (Exception e) {
+        } catch (Exception e){
             e.printStackTrace();
             throw new RuntimeException(e);
         }

@@ -28,10 +28,4 @@ public class CourseActivity extends Activity{
         room.setText("Room " + course.room);
         average.setText((course.average < 0) ? "N/A" : Integer.toString((int)course.average) + "%");
     }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        this.overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
-    }
 }
