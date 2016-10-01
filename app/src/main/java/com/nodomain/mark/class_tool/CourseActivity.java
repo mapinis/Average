@@ -16,6 +16,8 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.io.FileNotFoundException;
+import java.io.OutputStreamWriter;
 import java.util.List;
 
 /**
@@ -23,13 +25,13 @@ import java.util.List;
  */
 public class CourseActivity extends Activity{
     AssessmentListAdapter assessmentAdapter;
-    course course;
+    course thisCourse;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course);
-        course = (course)getIntent().getSerializableExtra("course");
-        assessmentAdapter = new AssessmentListAdapter(this, R.layout.assessment_item, course.assessments);
+        thisCourse = (course)getIntent().getSerializableExtra("course");
+        assessmentAdapter = new AssessmentListAdapter(this, R.layout.assessment_item, thisCourse.assessments);
         ListView assessmentLV = (ListView) findViewById(R.id.assessmentsListView);
         assessmentLV.setAdapter(assessmentAdapter);
 
@@ -56,7 +58,36 @@ public class CourseActivity extends Activity{
                         try {
                             int worth = Integer.parseInt(worthET.getText().toString());
                             int gotten = Integer.parseInt(gottenET.getText().toString());
-                            course.addAssessment(nameET.getText().toString(), worth, gotten);
+                            boolean fail = false;
+                            for(course.assessment assessment: thisCourse.assessments){
+                                if(nameET.toString().equals(assessment.name)){
+                                    nameET.setError("Name in use");
+                                    fail = true;
+                                    break;
+                                }
+                            }
+                            if(!fail){
+                                thisCourse.addAssessment(nameET.getText().toString(), worth, gotten);
+                                try {
+
+                                    JSONIO JSONIO = new JSONIO(openFileInput(  "courseData.txt"));
+                                    JSONIO.addAssessment(thisCourse);
+                                    deleteFile("courseData.txt");
+                                    JSONIO.writeJSON(new OutputStreamWriter(openFileOutput("courseData.txt", MODE_APPEND)));
+
+                                } catch(FileNotFoundException e){
+                                    Log.i("courseData.txt", "not found");
+                                    try{
+                                        JSONIO JSONIO = new JSONIO(null);
+                                        JSONIO.addAssessment(thisCourse);
+                                        deleteFile("courseData.txt");
+                                        JSONIO.writeJSON(new OutputStreamWriter(openFileOutput("courseData.txt", MODE_APPEND)));
+                                    } catch(FileNotFoundException f){}
+                                } catch(Exception e){
+                                    e.printStackTrace();
+                                    throw new RuntimeException(e);
+                                }
+                            }
                         } catch (NumberFormatException e){
                             try {
                                 int fail = Integer.parseInt(worthET.getText().toString());
@@ -66,7 +97,7 @@ public class CourseActivity extends Activity{
                             }
                         }
                         assessmentAdapter.notifyDataSetChanged();
-                        average.setText((course.average < 0) ? "N/A" : Integer.toString((int)course.average) + "%");
+                        average.setText((thisCourse.average < 0) ? "N/A" : Integer.toString((int)+thisCourse.average) + "%");
                     }
                 });
                 builder.setNegativeButton("Cancel", null);
@@ -76,10 +107,10 @@ public class CourseActivity extends Activity{
             }
         });
 
-        name.setText(course.name);
-        teacher.setText("Teacher: " + course.teacher);
-        block.setText("Block " + course.block);
-        room.setText("Room " + course.room);
-        average.setText((course.average < 0) ? "N/A" : Integer.toString((int)course.average) + "%");
+        name.setText(thisCourse.name);
+        teacher.setText("Teacher: " + thisCourse.teacher);
+        block.setText("Block " + thisCourse.block);
+        room.setText("Room " + thisCourse.room);
+        average.setText((thisCourse.average < 0) ? "N/A" : Integer.toString((int)thisCourse.average) + "%");
     }
 }

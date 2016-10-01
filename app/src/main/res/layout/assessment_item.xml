@@ -24,9 +24,9 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:textColor="@color/lightTextCol"
-        android:gravity="center"
+        android:gravity="end"
         android:textSize="23sp"
-        android:text="100/100"/>
+        android:text="100/100 "/>
 
     <ImageButton
         android:layout_weight="0.1"
