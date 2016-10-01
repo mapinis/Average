@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
+    android:layout_marginLeft="15dp"
+    android:weightSum="1"
+    android:layout_marginRight="15dp"
+    android:layout_height="40dp">
+    <TextView
+        android:paddingLeft="10dp"
+        android:layout_weight="0.6"
+        android:id="@+id/assessmentName"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:textColor="@color/lightTextCol"
+        android:gravity="center_vertical"
+        android:textSize="23sp"
+        android:text="Assessment"/>
+
+    <TextView
+        android:layout_weight="0.3"
+        android:id="@+id/assessmentPoints"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:textColor="@color/lightTextCol"
+        android:gravity="center"
+        android:textSize="23sp"
+        android:text="100/100"/>
+
+    <ImageButton
+        android:layout_weight="0.1"
+        android:contentDescription="Delete Assessment"
+        android:id="@+id/deleteAssessment"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:src="@mipmap/ic_delete_black_24dp"
+        android:background="#0000"
+        android:alpha="0.5"
+        android:layout_gravity="center"/>
+</LinearLayout>

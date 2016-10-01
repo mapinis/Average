@@ -21,7 +21,7 @@
             android:label="Add Course"
             android:theme="@style/AppTheme"/>
         <activity android:name="com.nodomain.mark.class_tool.CourseActivity"
-            android:windowSoftInputMode="adjustResize"
+            android:windowSoftInputMode="adjustNothing"
             android:label="course_name"
             android:theme="@style/AppTheme" />
     </application>

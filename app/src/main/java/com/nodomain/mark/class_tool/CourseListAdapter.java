@@ -27,8 +27,7 @@ public class CourseListAdapter extends ArrayAdapter<course>{
         View courseCV = convertView;
 
         if(courseCV == null){
-            LayoutInflater inflater = LayoutInflater.from(getContext());
-            courseCV = inflater.inflate(R.layout.course_cv, null);
+            courseCV = LayoutInflater.from(getContext()).inflate(R.layout.course_cv, null);
         }
 
         course currentCourse = getItem(position);

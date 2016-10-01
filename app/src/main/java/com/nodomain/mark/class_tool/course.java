@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class course implements Serializable{
 
-    private class assessment {
+     protected class assessment {
 
         public int pointsWorth;
         public int pointsGotten;
@@ -21,7 +21,7 @@ public class course implements Serializable{
         public assessment(String name, int pointsWorth, int pointsGotten){
             this.pointsWorth = pointsWorth;
             this.pointsGotten = pointsGotten;
-            this.percentage = pointsGotten/pointsWorth;
+            this.percentage = (float)pointsGotten/pointsWorth;
             this.name = name;
         }
     }
@@ -52,7 +52,7 @@ public class course implements Serializable{
             totalPointsWorth += assessment.pointsWorth;
         }
 
-        average = (totalPointsGotten / totalPointsWorth) * 100;
+        average = ((float)totalPointsGotten / totalPointsWorth) * 100;
     }
 
     public void deleteAssessment(assessment assessment) {

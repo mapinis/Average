@@ -11,4 +11,5 @@
     <color name="cCreatorBackground">#C7C6C4</color>
     <color name="borderColor">#5E5E5E</color>
     <color name="colorPrimaryLight">#C7D1FF</color>
+    <color name="dividerColor">#BDBDBD</color>
 </resources>

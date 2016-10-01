@@ -22,7 +22,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="5dp"
+            android:paddingTop="0dp"
             android:orientation="vertical"
             android:textColor="#FFF"
             android:elevation="15dp"
@@ -33,10 +33,10 @@
                 android:id="@+id/average"
                 android:textSize="60sp"
                 android:textAlignment="center"
-                android:gravity="center_horizontal"
+                android:gravity="center"
                 android:textColor="#FFF"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="65dp"
                 android:text="50%"/>
 
             <TextView
@@ -129,11 +129,13 @@
         <ListView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:divider="@android:color/transparent"
-            android:dividerHeight="7dp"
+            android:divider="@color/dividerColor"
+            android:dividerHeight="1dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
             android:id="@+id/assessmentsListView" />
 
-        <!--<android.support.design.widget.FloatingActionButton
+        <android.support.design.widget.FloatingActionButton
             android:id="@+id/addAssessmentFAB"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -144,7 +146,7 @@
             android:layout_alignParentEnd="true"
             app:pressedTranslationZ="12dp"
             app:fabSize="mini"
-            app:rippleColor="@color/colorPrimaryDark"/> <!- CHANGE THIS TO SOMETHING BETTER -->
+            app:rippleColor="@color/colorPrimaryDark"/>
 
     </RelativeLayout>
 
