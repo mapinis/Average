@@ -44,7 +44,7 @@ public class CourseListAdapter extends ArrayAdapter<course>{
                 averageText = "";
             }
             else {
-                averageText = currentCourse.average + "%";
+                averageText = (int)currentCourse.average + "%";
             }
             gradeDisp.setText(averageText);
         }

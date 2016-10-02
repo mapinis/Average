@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class course implements Serializable{
 
-     protected class assessment {
+     protected class assessment implements Serializable{
 
         public int pointsWorth;
         public int pointsGotten;

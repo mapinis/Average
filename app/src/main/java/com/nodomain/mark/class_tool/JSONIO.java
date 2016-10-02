@@ -82,9 +82,18 @@ public class JSONIO {
                 for (int i = 0; i < courseListArray.length(); i++) {
                     JSONObject courseObj = courseListArray.getJSONObject(i);
                     Log.i("addingCourse", courseObj.toString());
-                    courseList.add(new course(courseObj.getString("name"),
+                    course course = new course(courseObj.getString("name"),
                             courseObj.getInt("block"), courseObj.getString("teacher"),
-                            courseObj.getString("room")));
+                            courseObj.getString("room"));
+                    if(courseObj.has("assessments")){
+                        JSONArray assessmentsArray = courseObj.getJSONArray("assessments");
+                        for(int j = 0; j < assessmentsArray.length(); j++){
+                            JSONObject assessmentObj = assessmentsArray.getJSONObject(j);
+                            course.addAssessment(assessmentObj.getString("name"), assessmentObj.getInt("worth"),
+                                    assessmentObj.getInt("gotten"));
+                        }
+                    }
+                    courseList.add(course);
                 }
             } catch(Exception e){
                 e.printStackTrace();
@@ -122,10 +131,10 @@ public class JSONIO {
             JSONArray courseListArray = JSONData.getJSONArray("courses");
             for(int i = 0; i < courseListArray.length(); i++){
                 JSONObject courseObj = courseListArray.getJSONObject(i);
-                if(courseObj.get("name") == course.name
-                        && courseObj.get("room") == course.room
-                        && courseObj.get("teacher") == course.teacher
-                        && courseObj.get("block").toString() == Integer.toString(course.block)){
+                if(courseObj.getString("name").equals(course.name)
+                        && courseObj.get("room").equals(course.room)
+                        && courseObj.get("teacher").equals(course.teacher)
+                        && courseObj.getInt("block") == course.block){
                     courseListArray.remove(i);
                     JSONData.remove("courses");
                     JSONData.put("courses", courseListArray);
@@ -143,10 +152,10 @@ public class JSONIO {
             JSONArray courseListArray = JSONData.getJSONArray("courses");
             for(int i = 0; i < courseListArray.length(); i++){
                 JSONObject courseObj = courseListArray.getJSONObject(i);
-                if(courseObj.get("name") == course.name
-                        && courseObj.get("room") == course.room
-                        && courseObj.get("teacher") == course.teacher
-                        && courseObj.get("block").toString() == Integer.toString(course.block)){
+                if(courseObj.getString("name").equals(course.name)
+                        && courseObj.getString("room").equals(course.room)
+                        && courseObj.getString("teacher").equals(course.teacher)
+                        && courseObj.getInt("block") == course.block){
                     JSONArray assessments;
                     if(courseObj.has("assessments")){
                         assessments = courseObj.getJSONArray("assessments");
