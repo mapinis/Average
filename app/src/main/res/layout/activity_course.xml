@@ -1,153 +1,161 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.nodomain.mark.class_tool.CourseActivity"
-    android:weightSum="1"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/infoLayout"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:elevation="10dp"
-        android:layout_height="0dp"
-        android:background="@color/colorPrimaryLight"
-        android:paddingTop="10dp"
-        android:layout_weight="0.45" >
+        android:weightSum="1">
 
         <LinearLayout
+            android:id="@+id/infoLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="0dp"
             android:orientation="vertical"
-            android:textColor="#FFF"
-            android:elevation="15dp"
-            android:background="@color/colorPrimaryDark"
-            android:paddingBottom="7dp">
+            android:elevation="10dp"
+            android:layout_height="0dp"
+            android:background="@color/colorPrimaryLight"
+            android:paddingTop="10dp"
+            android:layout_weight="0.425" >
 
-            <TextView
-                android:id="@+id/average"
-                android:textSize="60sp"
-                android:textAlignment="center"
-                android:gravity="center"
-                android:textColor="#FFF"
-                android:layout_width="match_parent"
-                android:layout_height="65dp"
-                android:text="50%"/>
-
-            <TextView
-                android:id="@+id/averageText"
-                android:textSize="20sp"
-                android:textAlignment="center"
-                android:gravity="center_horizontal"
-                android:textColor="#FFF"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Average"/>
+                android:paddingTop="0dp"
+                android:orientation="vertical"
+                android:textColor="#FFF"
+                android:elevation="15dp"
+                android:background="@color/colorPrimaryDark"
+                android:paddingBottom="7dp">
+
+                <TextView
+                    android:id="@+id/average"
+                    android:textSize="60sp"
+                    android:textAlignment="center"
+                    android:gravity="center"
+                    android:textColor="#FFF"
+                    android:layout_width="match_parent"
+                    android:layout_height="65dp"
+                    android:text="50%"/>
+
+                <TextView
+                    android:id="@+id/averageText"
+                    android:textSize="20sp"
+                    android:textAlignment="center"
+                    android:gravity="center_horizontal"
+                    android:textColor="#FFF"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Average"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textAlignment="center"
+                android:textColor="@color/mainTextCol"
+                android:layout_marginTop="5dp"
+                android:textSize="30sp"
+                android:text="Course Name"/>
+
+            <TextView
+                android:id="@+id/teacher"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:textAlignment="center"
+                android:textColor="@color/lightTextCol"
+                android:layout_marginTop="10dp"
+                android:textSize="20sp"
+                android:text="Teacher: Name"/>
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:weightSum="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/block"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:textAlignment="center"
+                    android:textColor="@color/lightTextCol"
+                    android:textSize="20sp"
+                    android:text="Block #"/>
+
+                <TextView
+                    android:id="@+id/room"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:textAlignment="center"
+                    android:textColor="@color/lightTextCol"
+                    android:textSize="20sp"
+                    android:text="Room #"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 
         <TextView
-            android:id="@+id/name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:textAlignment="center"
-            android:textColor="@color/mainTextCol"
-            android:layout_marginTop="5dp"
-            android:textSize="30sp"
-            android:text="Course Name"/>
-
-        <TextView
-            android:id="@+id/teacher"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:textAlignment="center"
+            android:layout_height="0dp"
+            android:text="Assessments"
             android:textColor="@color/lightTextCol"
-            android:layout_marginTop="10dp"
-            android:textSize="20sp"
-            android:text="Teacher: Name"/>
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textSize="20dp"
+            android:elevation="5dp"
+            android:layout_weight="0.075"/>
 
-        <LinearLayout
-            android:layout_marginTop="10dp"
+        <RelativeLayout
+            android:id="@+id/assessmentsLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:weightSum="1"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            android:layout_height="0dp"
+            android:layout_weight="0.5" >
 
-            <TextView
-                android:id="@+id/block"
-                android:layout_width="0dp"
-                android:layout_weight="0.5"
+            <ListView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:textAlignment="center"
-                android:textColor="@color/lightTextCol"
-                android:textSize="20sp"
-                android:text="Block #"/>
+                android:divider="@color/dividerColor"
+                android:dividerHeight="1dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:id="@+id/assessmentsListView" />
 
-            <TextView
-                android:id="@+id/room"
-                android:layout_width="0dp"
-                android:layout_weight="0.5"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:textAlignment="center"
-                android:textColor="@color/lightTextCol"
-                android:textSize="20sp"
-                android:text="Room #"/>
-
-        </LinearLayout>
+        </RelativeLayout>
 
     </LinearLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:text="Assessments"
-        android:textColor="@color/lightTextCol"
-        android:gravity="center"
-        android:textAlignment="center"
-        android:textSize="20dp"
-        android:elevation="5dp"
-        android:layout_weight="0.075"/>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/addAssessmentFAB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_add_white_24dp"
+        android:layout_marginRight="10dp"
+        app:borderWidth="0dp"
+        android:elevation="6dp"
+        app:layout_anchor="@id/infoLayout"
+        app:layout_anchorGravity="bottom|right|end"
+        app:pressedTranslationZ="12dp"
+        app:fabSize="mini"
+        app:rippleColor="@color/colorPrimaryDark"/>
 
-    <RelativeLayout
-        android:id="@+id/assessmentsLayout"
-        android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_height="0dp"
-        android:layout_weight="0.475" >
-
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:divider="@color/dividerColor"
-            android:dividerHeight="1dp"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:id="@+id/assessmentsListView" />
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/addAssessmentFAB"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/ic_add_white_24dp"
-            app:borderWidth="0dp"
-            android:elevation="6dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            app:pressedTranslationZ="12dp"
-            app:fabSize="mini"
-            app:rippleColor="@color/colorPrimaryDark"/>
-
-    </RelativeLayout>
-
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

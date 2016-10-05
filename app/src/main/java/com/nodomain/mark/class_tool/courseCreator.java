@@ -30,11 +30,12 @@ public class courseCreator extends Activity{
             @Override
             public void onClick(View v){
                 //MAKE SURE TO TEST THAT BLOCK is INT, and NAME not TAKEN
+                course newCourse = new course(etName.getText().toString(), Integer.parseInt(etBlock.getText().toString()),
+                        etTeacher.getText().toString(), etRoom.getText().toString());
                 try {
 
                     JSONIO JSONIO = new JSONIO(openFileInput("courseData.txt"));
-                    JSONIO.addCourse(etName.getText().toString(), Integer.parseInt(etBlock.getText().toString()),
-                            etTeacher.getText().toString(), etRoom.getText().toString());
+                    JSONIO.addCourse(newCourse);
                     deleteFile("courseData.txt");
                     JSONIO.writeJSON(new OutputStreamWriter(openFileOutput("courseData.txt", MODE_APPEND)));
 
@@ -42,8 +43,7 @@ public class courseCreator extends Activity{
                     Log.i("courseData.txt", "not found");
                     try{
                         JSONIO JSONIO = new JSONIO(null);
-                        JSONIO.addCourse(etName.getText().toString(), Integer.parseInt(etBlock.getText().toString()),
-                                etTeacher.getText().toString(), etRoom.getText().toString());
+                        JSONIO.addCourse(newCourse);
                         deleteFile("courseData.txt");
                         JSONIO.writeJSON(new OutputStreamWriter(openFileOutput("courseData.txt", MODE_APPEND)));
                     } catch(FileNotFoundException f){}

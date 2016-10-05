@@ -103,7 +103,7 @@ public class JSONIO {
         return courseList;
     }
 
-    public void addCourse(String name, int block, String teacher, String room){
+    public void addCourse(course course){
         readJSON();
         try {
             JSONArray courseListArray;
@@ -113,13 +113,16 @@ public class JSONIO {
                 courseListArray = new JSONArray();
             }
             JSONObject courseObj = new JSONObject();
-            courseObj.put("name", name);
-            courseObj.put("block", block);
-            courseObj.put("teacher", teacher);
-            courseObj.put("room", room);
+            courseObj.put("name", course.name);
+            courseObj.put("block", course.block);
+            courseObj.put("teacher", course.teacher);
+            courseObj.put("room", course.room);
             courseListArray.put(courseObj);
             JSONData.remove("courses");
             JSONData.put("courses", courseListArray);
+            for(int i = 0; i < course.assessments.size(); i++){
+                addAssessment(course, i);
+            }
         } catch(Exception e){
             e.printStackTrace();
             throw new RuntimeException(e);
@@ -146,7 +149,7 @@ public class JSONIO {
         }
     }
 
-    public void addAssessment(course course){
+    public void addAssessment(course course,int  assessmentNum){
         course.assessment assessment = course.assessments.get(course.assessments.size()-1);
         try {
             JSONArray courseListArray = JSONData.getJSONArray("courses");
@@ -182,8 +185,9 @@ public class JSONIO {
 
     }
 
-    public void deleteAssessment(course course, String assessmentName){
-        //NOT DOING THIS YET
+    public void deleteAssessment(course course){
+        deleteCourse(course);
+        addCourse(course);
     }
 
     public void close(){

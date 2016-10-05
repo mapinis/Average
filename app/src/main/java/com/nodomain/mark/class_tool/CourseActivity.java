@@ -9,16 +9,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.io.FileNotFoundException;
 import java.io.OutputStreamWriter;
-import java.util.List;
 
 /**
  * Created by Mark on 9/18/2016.
@@ -29,9 +26,15 @@ public class CourseActivity extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        View.OnClickListener deleteAssessmentListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i("deleteAssessment", "deleting");
+            }
+        };
         setContentView(R.layout.activity_course);
         thisCourse = (course)getIntent().getSerializableExtra("course");
-        assessmentAdapter = new AssessmentListAdapter(this, R.layout.assessment_item, thisCourse.assessments);
+        assessmentAdapter = new AssessmentListAdapter(this, R.layout.assessment_item, thisCourse.assessments,  deleteAssessmentListener);
         ListView assessmentLV = (ListView) findViewById(R.id.assessmentsListView);
         assessmentLV.setAdapter(assessmentAdapter);
 
@@ -71,7 +74,7 @@ public class CourseActivity extends Activity{
                                 try {
 
                                     JSONIO JSONIO = new JSONIO(openFileInput(  "courseData.txt"));
-                                    JSONIO.addAssessment(thisCourse);
+                                    JSONIO.addAssessment(thisCourse, thisCourse.assessments.size() - 1);
                                     deleteFile("courseData.txt");
                                     JSONIO.writeJSON(new OutputStreamWriter(openFileOutput("courseData.txt", MODE_APPEND)));
 
@@ -79,7 +82,7 @@ public class CourseActivity extends Activity{
                                     Log.i("courseData.txt", "not found");
                                     try{
                                         JSONIO JSONIO = new JSONIO(null);
-                                        JSONIO.addAssessment(thisCourse);
+                                        JSONIO.addAssessment(thisCourse, thisCourse.assessments.size() - 1);
                                         deleteFile("courseData.txt");
                                         JSONIO.writeJSON(new OutputStreamWriter(openFileOutput("courseData.txt", MODE_APPEND)));
                                     } catch(FileNotFoundException f){}
