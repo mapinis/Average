@@ -1,4 +1,4 @@
-package com.nodomain.mark.class_tool;
+package com.nodomain.mark.average;
 
 import java.io.Serializable;
 import java.util.ArrayList;

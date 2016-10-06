@@ -1,4 +1,4 @@
-package com.nodomain.mark.class_tool;
+package com.nodomain.mark.average;
 
 import org.junit.Test;
 

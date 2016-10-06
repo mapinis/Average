@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.nodomain.mark.class_tool">
+    package="com.nodomain.mark.average">
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true">
-        <activity android:name="com.nodomain.mark.class_tool.MainActivity"
+        <activity android:name="com.nodomain.mark.average.MainActivity"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
@@ -16,11 +16,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.nodomain.mark.class_tool.courseCreator"
+        <activity android:name="com.nodomain.mark.average.courseCreator"
             android:windowSoftInputMode="adjustResize"
             android:label="Add Course"
             android:theme="@style/AppTheme"/>
-        <activity android:name="com.nodomain.mark.class_tool.CourseActivity"
+        <activity android:name="com.nodomain.mark.average.CourseActivity"
             android:windowSoftInputMode="adjustNothing"
             android:label="course_name"
             android:theme="@style/AppTheme" />

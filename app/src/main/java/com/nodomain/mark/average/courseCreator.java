@@ -1,4 +1,4 @@
-package com.nodomain.mark.class_tool;
+package com.nodomain.mark.average;
 
 import android.app.Activity;
 import android.os.Bundle;
