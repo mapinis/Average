@@ -3,12 +3,14 @@ package com.nodomain.mark.average;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -25,23 +27,52 @@ public class CourseActivity extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_course);
+
+        final TextView average = (TextView) findViewById(R.id.average);
+        final ListView assessmentLV = (ListView) findViewById(R.id.assessmentsListView);
+        thisCourse = (course)getIntent().getSerializableExtra("course");
         View.OnClickListener deleteAssessmentListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("deleteAssessment", "deleting");
+                for(int i = 0; i < assessmentLV.getChildCount(); i++){
+                    LinearLayout item = (LinearLayout) assessmentLV.getChildAt(i);
+                    ImageButton deleteButton = (ImageButton) item.findViewById(R.id.deleteAssessment);
+                    if(deleteButton.equals(v)){
+                        thisCourse.deleteAssessment(thisCourse.assessments.get(i));
+                        assessmentAdapter.notifyDataSetChanged();
+                        average.setText((thisCourse.average < 0) ? "N/A" : Integer.toString((int)thisCourse.average) + "%");
+
+                        try {
+
+                            JSONIO JSONIO = new JSONIO(openFileInput("courseData.txt"));
+                            JSONIO.deleteAssessment(thisCourse);
+                            deleteFile("courseData.txt");
+                            JSONIO.writeJSON(new OutputStreamWriter(openFileOutput("courseData.txt", MODE_APPEND)));
+
+                        } catch(FileNotFoundException e){
+                            Log.i("courseData.txt", "not found");
+                            try{
+                                JSONIO JSONIO = new JSONIO(null);
+                                JSONIO.deleteAssessment(thisCourse);
+                                deleteFile("courseData.txt");
+                                JSONIO.writeJSON(new OutputStreamWriter(openFileOutput("courseData.txt", MODE_APPEND)));
+                            } catch(FileNotFoundException f){}
+                        } catch(Exception e){
+                            e.printStackTrace();
+                            throw new RuntimeException(e);
+                        }
+                    }
+                }
             }
         };
-        setContentView(R.layout.activity_course);
-        thisCourse = (course)getIntent().getSerializableExtra("course");
         assessmentAdapter = new AssessmentListAdapter(this, R.layout.assessment_item, thisCourse.assessments,  deleteAssessmentListener);
-        ListView assessmentLV = (ListView) findViewById(R.id.assessmentsListView);
         assessmentLV.setAdapter(assessmentAdapter);
 
         TextView name = (TextView) findViewById(R.id.name);
         TextView teacher = (TextView) findViewById(R.id.teacher);
         TextView block = (TextView) findViewById(R.id.block);
         TextView room = (TextView) findViewById(R.id.room);
-        final TextView average = (TextView) findViewById(R.id.average);
         FloatingActionButton addAssessment = (FloatingActionButton) findViewById(R.id.addAssessmentFAB);
         addAssessment.setOnClickListener(new View.OnClickListener() {
             @Override

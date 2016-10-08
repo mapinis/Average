@@ -57,13 +57,17 @@ public class course implements Serializable{
 
     public void deleteAssessment(assessment assessment) {
         assessments.remove(assessment);
-        int totalPointsGotten = 0;
-        int totalPointsWorth = 0;
-        for(assessment ass : assessments) { //hehe
-            totalPointsGotten += ass.pointsGotten;
-            totalPointsWorth += ass.pointsWorth;
+        if(assessments.size() > 0) {
+            int totalPointsGotten = 0;
+            int totalPointsWorth = 0;
+            for(assessment ass : assessments) { //hehe
+                totalPointsGotten += ass.pointsGotten;
+                totalPointsWorth += ass.pointsWorth;
+            }
+            average = (totalPointsGotten / totalPointsWorth) * 100;
         }
-
-        average = (totalPointsGotten / totalPointsWorth) * 100;
+        else{
+            average = -1;
+        }
     }
 }

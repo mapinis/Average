@@ -104,7 +104,6 @@ public class JSONIO {
     }
 
     public void addCourse(course course){
-        readJSON();
         try {
             JSONArray courseListArray;
             if (JSONData.has("courses")){
@@ -149,8 +148,8 @@ public class JSONIO {
         }
     }
 
-    public void addAssessment(course course,int  assessmentNum){
-        course.assessment assessment = course.assessments.get(course.assessments.size()-1);
+    public void addAssessment(course course, int assessmentNum){
+        course.assessment assessment = course.assessments.get(assessmentNum);
         try {
             JSONArray courseListArray = JSONData.getJSONArray("courses");
             for(int i = 0; i < courseListArray.length(); i++){

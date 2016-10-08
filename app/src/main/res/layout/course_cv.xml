@@ -31,7 +31,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:layout_weight="1.58">
+                android:layout_weight="1.5">
         
                 <TextView
                     android:id="@+id/nameDisp"
@@ -54,7 +54,7 @@
                 android:id="@+id/gradeDisp"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="0.42"
+                android:layout_weight="0.5"
                 android:textAlignment="center"
                 android:gravity="center"
                 android:text="100%"
